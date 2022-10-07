@@ -1,6 +1,7 @@
 <?php
     require_once('../controlador/controlador.php');
     require_once('../modelo/modelo.php');
+    require_once('../modelo/conexion.php');
 
     @session_start(); 
 
@@ -11,7 +12,7 @@
         $conn = $db->getConnection();
         $modelo = new Modelo($conn); 
 
-        list($nombre, $ap1, $ap2, $telefono, $correo, $edad, $usuario, $password) = $modelo->perfil($id);
+        list($nombre, $ap1, $ap2, $telefono, $correo, $edad, $usuario, $password) = perfil($id);
     }
     else{
         alert('No has iniciado session.');

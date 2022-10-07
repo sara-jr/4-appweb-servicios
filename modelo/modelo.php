@@ -68,7 +68,7 @@ class Modelo{
 		return $resul;
 	}
 
-	function perfil( $id ){
+	function datosPerfil( $id ){
 		$query = "SELECT * FROM usuarios WHERE id = ".$id;
 		$resultado = mysqli_query($this->conn, $query);
 		if(!$resultado){
