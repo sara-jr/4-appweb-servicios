@@ -6,13 +6,12 @@
     @session_start(); 
 
     if(isset($_SESSION['usuario'])){
-        var_dump($_SESSION);
         $id = $_SESSION['id'];
         $db = Database::getInstance();
         $conn = $db->getConnection();
         $modelo = new Modelo($conn); 
 
-        list($nombre, $ap1, $ap2, $telefono, $correo, $edad, $usuario, $password) = perfil($id);
+        list($nombre, $ap1, $telefono, $correo, $edad, $usuario, $password) = perfil($id);
     }
     else{
         alert('No has iniciado session.');
@@ -268,55 +267,55 @@
                           action='../controlador/guardaUsuario.php' method='POST'>
                              <div class='row-lg'>
                                 <span class='col pt-3'>
-                                   <h1 class='text-primary fw-bolder text-center' >Registrarse</h1>
+                                   <h1 class='text-primary fw-bolder text-center' >Editar datos personales</h1>
                                 </span>
                              </div>
                              <br/>
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
-                                   <input type='text' placeholder='Nombre' name='nombre' value="<?php echo"$nombre" ?>" required>     
-                                   class=' form-control text-center '/>
+                                <p>Nombre </p> 
+                                   <input type='text' placeholder='Nombre' name='nombre' value="<?php echo"$nombre" ?>" required class="form-control text-center">
                                 </div>
                              </div>
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
-                                   <input type='text' placeholder='Apellido' name='ape1'value="<?php echo"$ape1" ?>" > 
-                                   class=' form-control text-center '/>
+                                <p>Apellido: : </p> 
+                                   <input type='text' placeholder='Apellido' name='ape1'value="<?php echo"$ap1" ?>" class="form-control text-center">
                                 </div>
                              </div>
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
-                                   <input type='text' placeholder='Telefono' name='telefono' pattern='\d{10}' value="<?php echo"$telefono" ?>" > 
-                                   class=' form-control text-center '/>
+                                <p>Telefono: </p> 
+                                   <input type='text' placeholder='Telefono' name='telefono' pattern='\d{10}' value="<?php echo"$telefono" ?>" class="form-control text-center">
                                 </div>
                              </div>
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
-                                   <input type='password' placeholder='Contraseña'  name='pass' value="<?php echo"$password" ?>" > 
-                                   class=' form-control text-center '/>
+                                <p>Correo: </p> 
+                                   <input type='password' placeholder='Contraseña'  name='pass' value="<?php echo"$password" ?>" class="form-control text-center">
                                 </div>
                              </div>
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
-                                   <input type='email' placeholder='Correo' name='email' value="<?php echo"$correo" ?>" > 
-                                   class=' form-control text-center '/>
+                                <p>Correo : </p> 
+                                   <input type='email' placeholder='Correo' name='email' value="<?php echo"$correo" ?>"  class="form-control text-center">
                                 </div>
                              </div>
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
-                                   <input type='text' placeholder='Nombre de usuario' name='usuario' value="<?php echo"$usuario" ?>" readonly> 
-                                   class=' form-control text-center '/>
+                                <p>Usuario: </p> 
+                                   <input type='text' placeholder='Nombre de usuario' name='usuario' value="<?php echo"$usuario" ?>" readonly class="form-control text-center">
                                 </div>
                              </div>
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
-                                   <input type='number' placeholder='Edad' name='edad' value="<?php echo"$edad" ?>"> 
-                                   class=' form-control text-center '/>
+                                <p>Edad: </p>
+                                   <input type='number' placeholder='Edad' name='edad' value="<?php echo"$edad" ?>" class="form-control text-center" >
                                 </div>
                              </div>
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
-                                   <input type='submit' value='Registrarse' class='btn btn-outline-primary text-center'/>
+                                   <input type='submit' value='Guardar' class='btn btn-outline-primary text-center'/>
                                 </div>
                              </div>
                           </form>

@@ -6,32 +6,34 @@
         $MySQL = new Modelo ($conn);
         return $MySQL;
     }
-        function perfil($id){
-            $MySQL = instancia();
-            $query = $MySQL->datosPerfil($id);
-            
-            $nombre = $ape1 = $ape2 = $telefono = $correo = $edad = $usuario = $password = null;
 
-            foreach ($query as $filas) {
-                $nombre = $filas['nombre'];
-                $ape1 = $filas['apellido'];
-                $telefono = $filas['telefono'];
-                $correo = $filas['correo'];
-                $edad = $filas['edad'];
-                $usuario = $filas['usuario'];
-                $password = $filas['password'];
-            }
+    function perfil($id){
+        $MySQL = instancia();
+        $query = $MySQL->datosPerfil($id);
+        
+        $nombre = $ape1 = $telefono = $correo = $edad = $usuario = $password = null;
 
-            $result[] = $nombre;
-            $result[] = $ape1;
-            $result[] = $telefono;
-            $resull[] = $correo;
-            $result[] = $edad;
-            $result[] = $usuario;
-            $result[] = $password;
-          
-            return $result;
+        foreach ($query as $filas) {
+            //var_dump($filas);
+            $nombre = $filas['nombre'];
+            $ape1 = $filas['apellido'];
+            $telefono = $filas['telefono'];
+            $correo = $filas['correo'];
+            $edad = $filas['edad'];
+            $usuario = $filas['usuario'];
+            $password = $filas['password'];
         }
+
+        $result[] = $nombre;
+        $result[] = $ape1;
+        $result[] = $telefono;
+        $result[] = $correo;
+        $result[] = $edad;
+        $result[] = $usuario;
+        $result[] = $password;
+        
+        return $result;
+    }
 
     function alert($msg){
         echo "

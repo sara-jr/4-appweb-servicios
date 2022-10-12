@@ -9,6 +9,6 @@ $params = array(
     "pass" => $_POST["pass"]
 );
 
-print_r($params); die();
+ die();
 
 ?>

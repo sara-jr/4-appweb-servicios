@@ -14,7 +14,6 @@ $params = array(
     "tipo" => $_POST["tipo"] ?? 0 //ADMIN ES TIPO 1
 );
 
-print_r($params); 
 //instancia y conexion bd
 $db = Database::getInstance();
 $conn = $db->getConnection();

@@ -10,7 +10,6 @@ $params = array(
     "admin" => $_POST["admin"]
 );
 
-print_r($params); 
 //instancia y conexion bd
 $db = Database::getInstance();
 $conn = $db->getConnection();
