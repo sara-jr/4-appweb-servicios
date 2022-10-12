@@ -31,9 +31,34 @@ class Modelo{
 		return $resul;
 	}
 		
+	function actualizaDatos($params){
+		$error = "";
+		$valor = "";
+		$id = $params["id"];
+		$nombre = $params["nombre"];
+		$ape1 = $params["ape1"];
+		$telefono = $params["telefono"];
+		$email = $params["email"];
+		$edad = $params["edad"];
+		$usuario = $params["usuario"];
+		$pass = $params["pass"];
+
+		$query = "UPDATE usuarios ";
+		$query .= " SET nombre='".$nombre."', apellido='".$ape1."', telefono='".$telefono."', correo='".$email."', edad='".$edad."', usuario='".$usuario."', password='".$pass."'";
+		$query .= "WHERE id='$id';";
+
+		if($this->conn->query($query)){	
+			$valor = $this->conn->affected_rows;		
+		}else{
+			$error = '[' . $this->conn->error . ']';
+		}
+			 
+		$resul[] = $valor;
+		$resul[] = $error;	
+		return $resul;
+	}
 
 	function agregaUsuario( $params ){
-
 		$error = "";
 		$valor = "";
 		$nombre = $params["nombre"];

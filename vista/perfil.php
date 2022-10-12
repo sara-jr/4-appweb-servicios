@@ -26,7 +26,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title>Su perfil</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -264,13 +264,14 @@
                     <div class='col-lg'>
                        <div class='container-md p-5'>
                           <form class='pt-2 pb-5' 
-                          action='../controlador/guardaUsuario.php' method='POST'>
+                          action='../controlador/actualizaDatos.php' method='POST'>
                              <div class='row-lg'>
                                 <span class='col pt-3'>
                                    <h1 class='text-primary fw-bolder text-center' >Editar datos personales</h1>
                                 </span>
                              </div>
                              <br/>
+                             <input type='hidden' name="id" value="<?php echo"$id" ?>">
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
                                 <p>Nombre </p> 
