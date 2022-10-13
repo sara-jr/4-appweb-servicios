@@ -19,25 +19,32 @@ $db = Database::getInstance();
 $conn = $db->getConnection();
 $sesion = new Modelo($conn);
 
+// Validar que no ingrese datos duplicados
+$datos = perfil($id);
+if($datos['correo'] != $params['email']){ // Si el correo nuevo y el correo viejo son diferentes
+    if($sesion->correoUnico($datos['email'])){// Si el correo nuevo no existe en la base de datos
+        alert('Correo electronico duplicado');
+    }
+}
 
 //llamar a la funcion 'agregausuario'
 list ($valor, $error) = $sesion->actualizaDatos( $params );
 if ( empty( $valor ) ){
     
-    if($error == "d"){
-        echo "<script>alert('Usuario duplicado, vuelva a intentar');
+    if($error == "d" || $error == "i"){
+        echo "<script>alert('Datos duplicados o invalidos, vuelva a intentar');
         history.go(-1);
         </script>"; 
         
     }else{
         echo "<script>alert('Ocurrió un error al hacer el registro');
-        window.location.href='../vista/contact.html';
+        window.location.href='../vista/home-page-r.php';
         </script>";   			
     }
                    
 } else {
-    echo "<script>alert('Su usuario fue registrado exitosamente');
-    window.location.href='../vista/contact.html';
+    echo "<script>alert('Datos modificados con exito');
+    window.location.href='../vista/home-page-r.php';
     </script>";
 }
 ?>

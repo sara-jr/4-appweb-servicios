@@ -5,6 +5,20 @@ class Modelo{
 		$this->conn=$con;
 	}
 	
+	// Esta funcion verifica si el nombre de usuario y correo son unicos, es decir, no existen en la base de datos
+	function identificacionUnica($usuario, $email){
+		$sqlValidar = "SELECT * FROM usuarios WHERE usuario = '".$usuario."' OR correo = '".$email."'  ";
+		$resultado = mysqli_query($this->conn, $sqlValidar);
+		return mysqli_num_rows($resultado) == 0; // Si la consulta no regresa ninguna fila, entonces el usuario y la contraseña no existen
+	}
+
+	// Esta funcion verifica si el nombre de usuario y correo son unicos, es decir, no existen en la base de datos
+	function correoUnico($email){
+		$sqlValidar = "SELECT * FROM usuarios WHERE correo = '".$email."'  ";
+		$resultado = mysqli_query($this->conn, $sqlValidar);
+		return mysqli_num_rows($resultado) == 0; // Si la consulta no regresa ninguna fila, entonces el usuario y la contraseña no existen
+	}
+
 	function validarusuario($params){
 		$error = "";
 		$valor = "";
@@ -47,11 +61,19 @@ class Modelo{
 		$query .= " SET nombre='".$nombre."', apellido='".$ape1."', telefono='".$telefono."', correo='".$email."', edad='".$edad."', usuario='".$usuario."', password='".$pass."'";
 		$query .= "WHERE id='$id';";
 
-		if($this->conn->query($query)){	
-			$valor = $this->conn->affected_rows;		
-		}else{
-			$error = '[' . $this->conn->error . ']';
+		$old_email = 
+
+		if($this->correoUnico($email)){ // Si ingreso datos validos
+			if($this->conn->query($query)){	 // Si la consulat fue exitosa
+				$valor = $this->conn->affected_rows;		
+			}else{
+				$error = '[' . $this->conn->error . ']';
+			}
 		}
+		else{
+			$error = 'i';//Inidcar que el error fue gracias a datos duplicados
+		}
+
 			 
 		$resul[] = $valor;
 		$resul[] = $error;	
