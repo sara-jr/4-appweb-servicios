@@ -1,0 +1,68 @@
+@startuml
+skinparam linetype ortho
+top to bottom direction
+
+entity Usuario{
+  idUsuario int(11) NOT NULL <<PK>>
+  --------------------------------
+  nombre: text NOT NULL
+  apellido: text NOT NULL
+  telefono: int(11) NOT NULL
+  correo: varchar(20) NOT NULL
+  fechaNacimiento: DATETIME NOT NULL
+  usuario: varchar(64) NOT NULL
+  password: text NOT NULL
+  tipo: int(11) NOT NULL DEFAULT 0
+  saldo: DECIMAL NOT NULL
+}
+
+entity Producto{
+  idProducto: INT NOT NULL <<PK>>
+  -------------------------------
+  descripcion: TEXT 
+  nombre: SMALLTEXT NOT NULL
+  costo: DECIMAL NOT NULL
+  cantidad: INT NOT NULL
+}
+
+entity Devolucion{
+  idDevolucion: INT NOT NULL <<PK>>
+  -----------------------------------
+  idOrden: INT NOT NULL <<FK Orden.id>>
+  motivo: TEXT NOT NULL
+}
+
+entity Estado{
+  domicilio: INT NOT NULL <<PK>>
+  ------------------
+  codigoPostal: INT NOT NULL
+  calle: varchar(60) NOT NULL
+  numeroExterior: varchar(5) NOT NULL
+  numeroInterior: varchar(5)
+}
+
+
+entity OrdenProducto{
+  idOrdenProducto: INT NOT NULL <<PK>>
+  ----------------
+  idOrden: INT <<FK Orden.idOrden>>
+  idProducto: INT <<FK Producto.idProducto>>
+  cantidad: INT NOT NULL
+}
+
+entity Orden{
+  idOrden: INT NOT NULL <<PK>>
+  ------------------------------------
+  idUsuario: INT NOT NULL <<FK Usuario.id>>
+  domicilio: INT NOT NULL <<FK Ciudad.domicilio>>
+  fecha: DATETIME NOT NULL
+}
+
+
+Orden "n"-L-"1" Usuario
+Orden "1"-R-"n" OrdenProducto
+OrdenProducto "n"--"1" Producto
+Orden "n"-U-"1" Estado
+Orden "1"--"n" Devolucion
+
+@enduml
