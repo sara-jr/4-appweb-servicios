@@ -101,7 +101,7 @@ CREATE TABLE `usuarios` (
   `correo` varchar(20) NOT NULL,
   `fechaDeNacimiento` int(11) NOT NULL,
   `usuario` varchar(64) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` text NOT NULL,
   `tipo` int(11) NOT NULL DEFAULT 0,
   `saldo` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
