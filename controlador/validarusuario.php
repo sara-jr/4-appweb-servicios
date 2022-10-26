@@ -27,7 +27,7 @@ if ( empty( $valor ) ){
         
     }else{ // USUARIO O CONTRASEÑA INCORRECTAS
         echo "<script>alert('El usuario o la contraseña son incorrectos');
-        window.location.href='../vista/login.html';
+        window.location.href='../vista/page-login.html';
         </script>";   			
     }
                    

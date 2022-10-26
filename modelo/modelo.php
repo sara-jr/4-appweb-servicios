@@ -24,8 +24,10 @@ class Modelo{
 		$valor = "";
 		$user = $params ["usuario"];
 		$pass = $params ["pass"];
+		print_r(md5($pass));
+		die();
 
-		$query = "SELECT * FROM usuarios WHERE usuario = '".$user."' AND password = '".$pass."'; ";
+		$query = "SELECT * FROM usuarios WHERE usuario = '".$user."' AND MD5( password ) = '".md5($pass)."'; ";
 		$resultado = mysqli_query($this->conn, $query);
 
 		if(mysqli_num_rows($resultado)!= 0){
@@ -58,10 +60,10 @@ class Modelo{
 		$pass = $params["pass"];
 
 		$query = "UPDATE usuarios ";
-		$query .= " SET nombre='".$nombre."', apellido='".$ape1."', telefono='".$telefono."', correo='".$email."', edad='".$edad."', usuario='".$usuario."', password='".$pass."'";
+		$query .= " SET nombre='".$nombre."', apellido='".$ape1."', telefono='".$telefono."', correo='".$email."', edad='".$edad."', usuario='".$usuario."', password='".md5($pass)."'";
 		$query .= "WHERE id='$id';";
 
-		$old_email = 
+		//$old_email = 
 
 		if($this->correoUnico($email)){ // Si ingreso datos validos
 			if($this->conn->query($query)){	 // Si la consulat fue exitosa
@@ -84,7 +86,7 @@ class Modelo{
 		$error = "";
 		$valor = "";
 		$nombre = $params["nombre"];
-		$ape1 = $params["ape1"];
+		$ape1 = $params["apellido"];
 		$telefono = $params["telefono"];
 		$email = $params["email"];
 		$edad = $params["edad"];
@@ -92,6 +94,7 @@ class Modelo{
 		$pass = $params["pass"];
 		$tipo = $params["tipo"];
 		$sqlValidar = "SELECT * FROM usuarios WHERE usuario = '".$usuario."' OR correo = '".$email."'  ";
+		print_r($sqlValidar);
 		$resultado = mysqli_query($this->conn, $sqlValidar);
 		
 		
@@ -99,8 +102,8 @@ class Modelo{
 			$error="d";
 		}else{
 			
-			$query = "INSERT INTO usuarios(nombre, apellido, telefono, correo, edad, usuario, password, tipo)";
-			$query .= " VALUES ('".$nombre."', '".$ape1."', '".$telefono."', '".$email."', '".$edad."', '".$usuario."', '".$pass."', 0);";
+			$query = "INSERT INTO usuarios(nombre, apellido, telefono, correo, fechaDeNacimiento, usuario, password, tipo)";
+			$query .= " VALUES ('".$nombre."', '".$ape1."', '".$telefono."', '".$email."', '".$edad."', '".$usuario."', '".md5($pass)."', 0);";
 
 			if($this->conn->query($query)){	
 				$valor = $this->conn->affected_rows;		

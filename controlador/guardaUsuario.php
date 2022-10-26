@@ -5,12 +5,12 @@ require_once("../modelo/modelo.php");
 
 $params = array(
     "nombre" => $_POST["nombre"],
-    "ape1" => $_POST["ape1"],
+    "apellido" => $_POST["apellido"],
     "telefono" => $_POST["telefono"],
     "email" => $_POST["email"],
     "edad" => $_POST["edad"],
     "usuario" => $_POST["usuario"],
-    "pass" => $_POST["pass"],
+    "pass" => $_POST["password"],
     "tipo" => $_POST["tipo"] ?? 0 //ADMIN ES TIPO 1
 );
 

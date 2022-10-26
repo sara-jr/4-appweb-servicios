@@ -3,7 +3,7 @@
 	define( "HOST",     "localhost" );
 	define( "USER",     "root" );
 	define( "PASSWORD", "" );
-	define( "DATABASE", "fabian y oscar uwu" );	//Nombre de tu Base de datos
+	define( "DATABASE", "tienda-tidem-4a" );	//Nombre de tu Base de datos
 	
 	class Database 
 	{
