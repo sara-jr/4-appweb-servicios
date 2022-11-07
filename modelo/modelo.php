@@ -24,7 +24,6 @@ class Modelo{
 		$valor = "";
 		$user = $params ["usuario"];
 		$pass = $params ["pass"];
-		print_r(md5($pass));
 		die();
 
 		$query = "SELECT * FROM usuarios WHERE usuario = '".$user."' AND MD5( password ) = '".md5($pass)."'; ";
@@ -94,16 +93,14 @@ class Modelo{
 		$pass = $params["pass"];
 		$tipo = $params["tipo"];
 		$sqlValidar = "SELECT * FROM usuarios WHERE usuario = '".$usuario."' OR correo = '".$email."'  ";
-		print_r($sqlValidar);
 		$resultado = mysqli_query($this->conn, $sqlValidar);
-		
-		
+
 		if(mysqli_num_rows($resultado)!= 0){				
 			$error="d";
 		}else{
 			
-			$query = "INSERT INTO usuarios(nombre, apellido, telefono, correo, fechaDeNacimiento, usuario, password, tipo)";
-			$query .= " VALUES ('".$nombre."', '".$ape1."', '".$telefono."', '".$email."', '".$edad."', '".$usuario."', '".md5($pass)."', 0);";
+			$query = "INSERT INTO usuarios(nombre, apellido, telefono, correo, fechaDeNacimiento, usuario, password, saldo, tipo)";
+			$query .= " VALUES ('".$nombre."', '".$ape1."', '".$telefono."', '".$email."', '".$edad."', '".$usuario."', '".md5($pass)."', 0, 0);";
 
 			if($this->conn->query($query)){	
 				$valor = $this->conn->affected_rows;		

@@ -1,9 +1,9 @@
 <?php
 	//Datos de la conexión
 	define( "HOST",     "localhost" );
-	define( "USER",     "root" );
-	define( "PASSWORD", "" );
-	define( "DATABASE", "tienda-tidem-4a" );	//Nombre de tu Base de datos
+	define( "USER",     "tienda-admin" );
+	define( "PASSWORD", "tienda123A" );
+	define( "DATABASE", "tienda" );	//Nombre de tu Base de datos
 	
 	class Database 
 	{

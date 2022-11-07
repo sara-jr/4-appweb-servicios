@@ -19,9 +19,9 @@ $db = Database::getInstance();
 $conn = $db->getConnection();
 $sesion = new Modelo($conn);
 
-
 //llamar a la funcion 'agregausuario'
 list ($valor, $error) = $sesion->agregaUsuario( $params );
+
 if ( empty( $valor ) ){
     
     if($error == "d"){

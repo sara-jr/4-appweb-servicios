@@ -22,6 +22,13 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+CREATE DATABASE tienda;
+
+CREATE USER 'tienda-admin'@'localhost' IDENTIFIED BY 'tienda123A';
+GRANT ALL ON tienda.* TO 'tienda-admin'@'localhost';
+FLUSH PRIVILEGES;
+
+USE tienda;
 
 --
 -- Estructura de tabla para la tabla `devolucion`
