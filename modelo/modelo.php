@@ -1,9 +1,7 @@
 <?php
-class Modelo{
-	private $conn;
-	function __construct($con){
-		$this->conn=$con;
-	}
+require_once('base.php');
+
+class Modelo extends BaseModel{
 	
 	// Esta funcion verifica si el nombre de usuario y correo son unicos, es decir, no existen en la base de datos
 	function identificacionUnica($usuario, $email){
