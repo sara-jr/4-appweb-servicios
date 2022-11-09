@@ -4,7 +4,7 @@ require_once('base.php');
 class ModeloProducto extends BaseModel{
 	public function __construct(){
 		parent::__construct('producto',
-			array('descripcion', 'nombre', 'costo', 'cantidad'));
+			array('nombre', 'descripcion', 'costo', 'cantidad'));
 	}
 
 	public function agregar($params){

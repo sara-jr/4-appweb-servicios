@@ -37,7 +37,8 @@ USE tienda;
 CREATE TABLE `devolucion` (
   `idDevolucion` int(11) NOT NULL,
   `idOrden` int(11) NOT NULL,
-  `motivo` int(11) NOT NULL
+  `motivo` int(11) NOT NULL,
+  PRIMARY KEY (`idDevolucion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -51,7 +52,8 @@ CREATE TABLE `estado` (
   `codigoPostal` int(11) NOT NULL,
   `calle` varchar(60) NOT NULL,
   `numeroExterior` varchar(5) NOT NULL,
-  `numeroInterior` varchar(5) DEFAULT NULL
+  `numeroInterior` varchar(5) DEFAULT NULL,
+  PRIMARY KEY(`domicilio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -61,10 +63,11 @@ CREATE TABLE `estado` (
 --
 
 CREATE TABLE `orden` (
-  `idOrden` int(11) NOT NULL,
+  `idOrden` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` int(11) NOT NULL,
   `domicilio` int(11) NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  PRIMARY KEY(`idOrden`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -74,10 +77,11 @@ CREATE TABLE `orden` (
 --
 
 CREATE TABLE `ordenproducto` (
-  `idOrdenProducto` int(11) NOT NULL,
+  `idOrdenProducto` int(11) NOT NULL AUTO_INCREMENT,
   `idOrden` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL,
+  PRIMARY KEY(`idOrdenProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -87,11 +91,12 @@ CREATE TABLE `ordenproducto` (
 --
 
 CREATE TABLE `producto` (
-  `idProducto` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` text NOT NULL,
   `nombre` text NOT NULL,
   `costo` decimal(10,0) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL,
+  PRIMARY KEY(`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -101,7 +106,7 @@ CREATE TABLE `producto` (
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` text NOT NULL,
   `apellido` text NOT NULL,
   `telefono` int(11) NOT NULL,
@@ -110,7 +115,8 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(64) NOT NULL,
   `password` text NOT NULL,
   `tipo` int(11) NOT NULL DEFAULT 0,
-  `saldo` decimal(10,0) NOT NULL
+  `saldo` decimal(10,0) NOT NULL,
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -126,65 +132,6 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `telefono`, `correo`, `fecha
 (6, 'admin', 'madero', 1234456789, 'admin@mail.com', 20, 'admin', '1234', 1, '0'),
 (7, 'Saul', 'Goodman', 1118001239, 'bussines@gmail.com', 30, 'sgman', '3a409ff9bf757ce7545b', 0, '0'),
 (8, 'Doroteo', 'Arango', 1234123456, 'darango@mail.mx', 40, 'panchoV', 'e807f1fcf82d132f9bb0', 0, '0');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `devolucion`
---
-ALTER TABLE `devolucion`
-  ADD PRIMARY KEY (`idDevolucion`),
-  ADD KEY `idOrden` (`idOrden`);
-
---
--- Indices de la tabla `estado`
---
-ALTER TABLE `estado`
-  ADD PRIMARY KEY (`domicilio`);
-
---
--- Indices de la tabla `orden`
---
-ALTER TABLE `orden`
-  ADD PRIMARY KEY (`idOrden`),
-  ADD KEY `idUsuario` (`idUsuario`),
-  ADD KEY `domicilio` (`domicilio`);
-
---
--- Indices de la tabla `ordenproducto`
---
-ALTER TABLE `ordenproducto`
-  ADD PRIMARY KEY (`idOrdenProducto`),
-  ADD KEY `idOrden` (`idOrden`),
-  ADD KEY `idProducto` (`idProducto`);
-
---
--- Indices de la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD PRIMARY KEY (`idProducto`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- Restricciones para tablas volcadas
---
 
 --
 -- Filtros para la tabla `devolucion`

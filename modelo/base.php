@@ -1,6 +1,7 @@
 <?php
 require_once('conexion.php');
 class BaseModel{
+	private $last_error;
 	protected $conn;
 	public $table_name;
 	public $fields;
@@ -15,9 +16,15 @@ class BaseModel{
 		$field_str = implode(', ', $this->fields);
 		$value_str = implode(', ', array_map(fn($x):string=>"'{$x}'", $values));
 		$query = "INSERT INTO {$this->table_name}({$field_str}) VALUES({$value_str});";
-		$res = mysqli_query($this->conn, $query);
-		print_r(mysqli_error($this->conn));
-		return mysqli_num_rows($res);
+		if($this->conn->query($query)){
+			return true;
+		}
+		$this->last_error = $this->conn->error;
+		return false;
+	}
+
+	public function getLastError(){
+		return $this->last_error;
 	}
 }
 ?>
