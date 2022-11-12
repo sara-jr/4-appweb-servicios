@@ -7,11 +7,14 @@ function productos(){
     $datos = $modelo->listar($foo);
     $tblmain = "";
     foreach ($datos as $filas) {
-        $tblmain .= "<tr class='text-center'>\n";
-        $tblmain .= "<td>". $filas['nombre'] . "</td>\n";
-        $tblmain .= "<td class='text-center'><img src='../vista/imagenes/mody.png'></td>\n";
-        $tblmain .= "<td class='text-center'><img src='../vista/imagenes/elim.png'></td>\n";
-        $tblmain .= "</tr>";
+        $tblmain .= "<tr class='text-center'>\n
+        <td> {$filas['nombre']}</td>\n
+        <td> {$filas['descripcion']}</td>\n
+        <td> $ {$filas['costo']}</td>\n
+        <td> {$filas['cantidad']}</td>\n
+        <td><a href='vista/editar.php?id={$filas['idProducto']}'>Editar</a></td>\n
+        <td><a href='controlador/eliminar.php?id={$filas['idProducto']}'>Elimnar</a></td>\n
+        </tr>";
     }
 
     return $tblmain;

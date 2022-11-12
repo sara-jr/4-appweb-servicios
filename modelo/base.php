@@ -2,6 +2,7 @@
 require_once('conexion.php');
 class BaseModel{
 	private $last_error;
+	private $last_response;
 	protected $conn;
 	public $table_name;
 	public $fields;
@@ -12,7 +13,7 @@ class BaseModel{
 		$this->table_name = $name;
 	}
 	
-	protected function insert_query($values, &$res){
+	public function agregar($values){
 		$field_str = implode(', ', $this->fields);
 		$value_str = implode(', ', array_map(fn($x):string=>"'{$x}'", $values));
 		$query = "INSERT INTO {$this->table_name}({$field_str}) VALUES({$value_str});";
@@ -23,7 +24,7 @@ class BaseModel{
 		return false;
 	}
 
-	public function listar(&$res){
+	public function listar(){
 		$res = $this->conn->query("SELECT * FROM {$this->table_name} LIMIT 100;");
 		if($res == false){ // Res no deberia ser un booleano si ocurrio un error
 			$this->last_error = $this->conn->error;
@@ -36,6 +37,10 @@ class BaseModel{
 			$row = $res->fetch_assoc();
 		}
 		return $rows;
+	}
+
+	public function getLastResponse(){
+		return $this->last_response;
 	}
 
 	public function getLastError(){

@@ -267,18 +267,12 @@ require_once('../controlador/producto/listar.php');
                                                 <th>Nombre</th>
                                                 <th>Costo</th>
                                                 <th>Cantidad</th>
-                                    
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             echo productos();
-                                    
                                             ?>
-
-
-
-
                                         </tbody>
                                         <tfoot>
                                             <tr>
