@@ -267,6 +267,7 @@ require_once('../controlador/producto/listar.php');
                                                 <th>Nombre</th>
                                                 <th>Costo</th>
                                                 <th>Cantidad</th>
+                                                <th colspan='2'>Opciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -280,7 +281,6 @@ require_once('../controlador/producto/listar.php');
                                                 <th>Nombre</th>
                                                 <th>Costo</th>
                                                 <th>Cantidad</th>
-                                          
                                             </tr>
                                         </tfoot>
                                     </table>

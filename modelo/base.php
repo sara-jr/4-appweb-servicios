@@ -6,11 +6,13 @@ class BaseModel{
 	protected $conn;
 	public $table_name;
 	public $fields;
+	public $key;
 
-	protected function __construct($name, $fields){
+	protected function __construct($name, $fields, $key){
 		$this->conn = Database::getInstance()->getConnection();
 		$this->fields = $fields;
 		$this->table_name = $name;
+		$this->key = $key;
 	}
 	
 	public function agregar($values){
@@ -18,6 +20,14 @@ class BaseModel{
 		$value_str = implode(', ', array_map(fn($x):string=>"'{$x}'", $values));
 		$query = "INSERT INTO {$this->table_name}({$field_str}) VALUES({$value_str});";
 		if($this->conn->query($query)){
+			return true;
+		}
+		$this->last_error = $this->conn->error;
+		return false;
+	}
+
+	public function eliminar($id){
+		if($this->conn->query("DELETE FROM {$this->table_name} WHERE {$this->key}={$id};")){
 			return true;
 		}
 		$this->last_error = $this->conn->error;

@@ -1,5 +1,18 @@
 <?php
     require_once("../modelo/modelo.php");
+    class ModelSingleton{
+        private ModeloProducto producto;
+
+        private __construct(){
+        }
+
+        public getProductoInstance(){
+            return producto;
+        }
+
+    }
+
+
     function instancia (){
         $db=Database::getInstance();
         $conn = $db->getConnection();
