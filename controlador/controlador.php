@@ -1,12 +1,12 @@
 <?php
     require_once("../modelo/modelo.php");
     class ModelSingleton{
-        private ModeloProducto producto;
+        private ModeloProducto $producto;
 
-        private __construct(){
+        private function __construct(){
         }
 
-        public getProductoInstance(){
+        public function getProductoInstance(){
             return producto;
         }
 

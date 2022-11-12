@@ -26,6 +26,16 @@ class BaseModel{
 		return false;
 	}
 
+	public function actualizar($values, $id){
+		$value_str = implode(', ', array_map(fn($f, $v):string=>"{$f}='{$v}'", $this->fields, $values));
+		$query = "UPDATE {$this->table_name} SET {$value_str} WHERE {$this->key} = {$id};";
+		if($this->conn->query($query)){
+			return true;
+		}
+		$this->last_error = $this->conn->error;
+		return false;
+	}
+
 	public function eliminar($id){
 		if($this->conn->query("DELETE FROM {$this->table_name} WHERE {$this->key}={$id};")){
 			return true;
@@ -47,6 +57,15 @@ class BaseModel{
 			$row = $res->fetch_assoc();
 		}
 		return $rows;
+	}
+
+	public function datos($id){
+		$res = $this->conn->query("SELECT * FROM {$this->table_name} WHERE {$this->key}={$id};");
+		if($res == false){ // Res no deberia ser un booleano si ocurrio un error
+			$this->last_error = $this->conn->error;
+			return null;			
+		}
+		return $res->fetch_assoc();
 	}
 
 	public function getLastResponse(){

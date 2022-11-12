@@ -11,7 +11,7 @@ function productos(){
         <td> {$filas['descripcion']}</td>\n
         <td> $ {$filas['costo']}</td>\n
         <td> {$filas['cantidad']}</td>\n
-        <td><a href='../vista/editar.php?id={$filas['idProducto']}'>Editar</a></td>\n
+        <td><a href='../vista/producto.php?id={$filas['idProducto']}'>Editar</a></td>\n
         <td><a href='../controlador/producto/eliminar.php?id={$filas['idProducto']}'>Elimnar</a></td>\n
         </tr>";
     }

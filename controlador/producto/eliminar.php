@@ -18,4 +18,7 @@ if($model->eliminar($id)){
 else{
     echo "Error: {$model->getLastError()}";
 }
+
+header('../../vista/index.html')
+die();
 ?>

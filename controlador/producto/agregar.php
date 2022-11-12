@@ -13,4 +13,7 @@ else{
     echo "Error al ingresar un producto: {$modelo->getLastError()}";
 }
 
+header('../../vista/index.html')
+die();
+
 ?>
