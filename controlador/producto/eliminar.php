@@ -19,6 +19,6 @@ else{
     echo "Error: {$model->getLastError()}";
 }
 
-header('../../vista/index.html')
+header('Location: ../../vista/index.html');
 die();
 ?>
