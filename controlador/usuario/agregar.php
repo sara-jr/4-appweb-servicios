@@ -9,13 +9,13 @@ $params = array(
     "correo" => $_POST["email"],
     "fechaNacimiento" => $_POST["fechaNacimiento"],
     "usuario" => $_POST["usuario"],
-    "password" => $_POST["password"],
+    "password" => md5($_POST["password"]),
     "tipo" => $_POST["tipo"] ?? 0, //ADMIN ES TIPO 1
     "saldo" => 0 
 );
 
 // Si las contraseñas no coinciden
-if(md5($_POST["passwordConf"]) != md5($_POST["password"])){ 
+if(md5($_POST["passwordConf"]) != $params['password']){ 
     echo "<script>
     alert('Las contraseñas no coinciden');
     window.history.back();
