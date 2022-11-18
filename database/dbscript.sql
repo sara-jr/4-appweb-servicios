@@ -90,13 +90,27 @@ CREATE TABLE `ordenproducto` (
 -- Estructura de tabla para la tabla `producto`
 --
 
+CREATE TABLE `categoria`(
+  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(64) NOT NULL,
+  `descripcion` TEXT,
+  PRIMARY KEY(`idCategoria`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `categoria`(`nombre`, `descripcion`) VALUES('General', NULL);
+INSERT INTO `categoria`(`nombre`, `descripcion`) VALUES('Electronica', NULL);
+INSERT INTO `categoria`(`nombre`, `descripcion`) VALUES('Muebles', NULL);
+INSERT INTO `categoria`(`nombre`, `descripcion`) VALUES('Consumibles', NULL);
+
 CREATE TABLE `producto` (
   `idProducto` int(11) NOT NULL AUTO_INCREMENT,
+  `idCategoria` int(11) NOT NULL,
   `descripcion` text NOT NULL,
   `nombre` text NOT NULL,
   `costo` decimal(10,0) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  PRIMARY KEY(`idProducto`)
+  PRIMARY KEY(`idProducto`),
+  FOREIGN KEY(`idCategoria`) REFERENCES `categoria`(`idCategoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
