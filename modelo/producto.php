@@ -18,7 +18,7 @@ class ModeloUbicacion extends BaseModel{
 
 class ModeloUsuario extends BaseModel{
 	public function __construct(){
-		parent::__construct('usuario',
+		parent::__construct('usuarios',
 			array( 
 				'nombre',
 				'apellido',
