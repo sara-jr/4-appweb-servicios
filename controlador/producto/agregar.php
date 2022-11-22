@@ -2,7 +2,14 @@
 require_once('../../modelo/producto.php');
 
 $modelo = new ModeloProducto();
-$params = array_intersect_key($_POST, array_flip($modelo->fields));
+print_r($_POST);
+$params = array(
+    'idCategoria'   => $_POST['idCategoria'],
+    'nombre'        => $_POST['nombre'],
+    'descripcion'   => $_POST['descripcion'],
+    'costo'         => $_POST['costo'],
+    'cantidad'      => $_POST['cantidad']
+);
 
 if($modelo->agregar($params)){
     echo "<script>

@@ -1,3 +1,6 @@
+<?php 
+    require_once('../controlador/categoria/listar.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -242,8 +245,7 @@
                  <div>
                     <div class='col-lg'>
                        <div class='container-md p-5'>
-                          <form class='pt-2 pb-5' 
-                          action='../controlador/producto/agregar.php' method='POST'>
+                          <form class='pt-2 pb-5' action='../controlador/producto/agregar.php' method='POST'>
                              <div class='row-lg'>
                                 <span class='col pt-3'>
                                    <h1 class='text-primary fw-bolder text-center' >Registrar producto</h1>
@@ -263,6 +265,15 @@
                                    class=' form-control text-center '/>
                                 </div>
                              </div>
+
+                             <div class='row pt-4'>
+                                <div class='col-md-6 offset-md-3'>
+                                    <select name="idCategoria" id="idCategoria" class="form-control text-center" required>
+                                        <?php echo listar(); ?>
+                                    </select> 
+                                </div>
+                             </div>
+
                              <div class='row pt-4'>
                                 <div class='col-md-6 offset-md-3'>
                                    <input type='number' placeholder='costo' name='costo' min="0"
@@ -283,11 +294,6 @@
                                    <input type='submit' value='Guardar' class='btn btn-outline-primary text-center'/>
                                 </div>
                              </div>
-                             <div>
-                                
-                             </div>
-
-
                             </form>
 
                        </div>

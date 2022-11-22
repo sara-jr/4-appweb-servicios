@@ -1,10 +1,17 @@
 <?php
 require_once('base.php');
 
+class ModeloCategoria extends BaseModel{
+	public function __construct(){
+		parent::__construct('categoria',
+			array('nombre', 'descripcion'), 'idCategoria');
+	}
+}
+
 class ModeloProducto extends BaseModel{
 	public function __construct(){
 		parent::__construct('producto',
-			array('nombre', 'descripcion', 'costo', 'cantidad'), 'idProducto');
+			array('idCategoria', 'nombre', 'descripcion', 'costo', 'cantidad'), 'idProducto');
 	}
 }
 
